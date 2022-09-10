@@ -1,0 +1,18 @@
+name: 'Neocities Deploy'
+author: 'Ashelyn Dawn'
+description: 'Use neocities CLI to upload your site'
+inputs:
+  directory:
+    description: 'Site root directory'
+    required: true
+    default: '.'
+  neocities_token:
+    description: 'Your Neocities API token'
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  env:
+    NEOCITIES_API_KEY: ${{ inputs.neocities_token }}
+  args:
+    - ${{ inputs.directory }}
